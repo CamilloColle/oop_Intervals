@@ -22,17 +22,19 @@ package intervals;
  * 
  * 3. 
  * 
- * 4.
+ * 4. Implement the factory methods and the mutator methods
  */
 
 /**
  * Abstract state invariants:
  * 
  * @invar The lower bound is not greater than the upper bound
- * 		| this.getLowerBound() <= this.getUpperBound()
+ * 		| getLowerBound() <= getUpperBound()
  * 
  * @invar The length equals the difference of the upper bound and the lower bound
- * 		| this.getLength() == this.getUpperBound() - this.getLowerBound()
+ * 		| getLength() == getUpperBound() - getLowerBound()
+ * 
+ * If there is now ambiguity we can get rid of the 'this.'
  *
  */
 public class Interval {
