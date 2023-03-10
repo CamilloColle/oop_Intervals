@@ -17,16 +17,22 @@ package intervals;
  * 
  * 1. Define the raw concrete state space =
  * 		define the fields
+ * 
+ * 2. 
+ * 
+ * 3. 
+ * 
+ * 4.
  */
 
 /**
  * Abstract state invariants:
  * 
  * @invar The lower bound is not greater than the upper bound
- * 		| getLowerBound(this) <= getUpperBound(this)
+ * 		| this.getLowerBound() <= this.getUpperBound()
  * 
  * @invar The length equals the difference of the upper bound and the lower bound
- * 		| getLength(this) == getUpperBound(this) - getLowerBound(this)
+ * 		| this.getLength() == this.getUpperBound() - this.getLowerBound()
  *
  */
 public class Interval {
@@ -41,39 +47,47 @@ public class Interval {
 	private int upperBound;
 	
 	
-
-	public static int getLowerBound(Interval interval) { return interval.lowerBound; }
-	public static int getUpperBound(Interval interval) { return interval.upperBound; }
+	//an instance method has no static keyword
+	public int getLowerBound() { return this.lowerBound; }
+	public int getUpperBound() { return this.upperBound; }
 	
-	public static int getLength(Interval interval) { return interval.upperBound - interval.lowerBound; }
+	public int getLength() { return this.upperBound - this.lowerBound; }
 	
 	/**
-	 * @post | result == (getLowerBound(interval) <= x && x < getUpperBound(interval))
+	 * @post | result == (this.getLowerBound() <= x && x < this.getUpperBound())
 	 */
-	public static boolean contains(Interval interval, int x) {throw new RuntimeException("Not implemented");}
+	public  boolean contains(int x) { return this.getLowerBound() <= x && x < this.getUpperBound(); }
 	
+	//You should always define a constructor because when none is defined Java will initialize all the fields of an obj to 0 which sometimes is not tolerated
 	//An abstract state space is composed of the possible observations you can make about an object through its inspectors
 	/**
 	 * @pre | lowerBound <= upperBound //here we don't use getters because before creating the object there's nothing to run getters on
 	 * 
-	 * @post | getLowerBound(result) == lowerBound
-	 * @post | getUpperBound(result) == upperBound
+	 * @post | this.getLowerBound() == lowerBound
+	 * @post | this.getUpperBound() == upperBound
 	 * 
 	 */
-	public static Interval create(int lowerBound, int upperBound) {throw new RuntimeException("Not implemented)");}
+	public Interval (int lowerBound, int upperBound) {
+		this.lowerBound = lowerBound;
+		this.upperBound = upperBound;
+	}
 	
 	
 	//primitive types can not be null so there's no need to put eg int x != null in the pre-conditions, unlike non primitive types like objects
 	
 	
 	/**
-	 * @pre | interval != null
+	 * 
 	 * @pre | other != null
 	 * 
-	 * @post | getLowerBound(result) == getLowerBound(interval) + getLowerBound(other)
-	 * @post | getLength(result) == getLength(interval) + getLength(other)
+	 * @post | result.getLowerBound() == this.getLowerBound() + other.getLowerBound()
+	 * @post | result.getLength() == this.getLength() + other.getLength()
 	 */
-	public static Interval plus(Interval interval, Interval other) {throw new RuntimeException("Not implemented)");}
+	public  Interval plus(Interval other) {
+		return new Interval(
+				this.lowerBound + other.lowerBound,
+				this.upperBound + other.lowerBound);
+	}
 	
 	
 }
