@@ -55,10 +55,12 @@ public class Interval {
 	
 	public int getLength() { return this.upperBound - this.lowerBound; }
 	
+	
 	/**
 	 * @post | result == (this.getLowerBound() <= x && x < this.getUpperBound())
 	 */
 	public  boolean contains(int x) { return this.getLowerBound() <= x && x < this.getUpperBound(); }
+	
 	
 	//You should always define a constructor because when none is defined Java will initialize all the fields of an obj to 0 which sometimes is not tolerated
 	//An abstract state space is composed of the possible observations you can make about an object through its inspectors

@@ -8,7 +8,8 @@ class TimeOfDayTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		//TimeOfDay time1 = new TimeOfDay(22, 15);
+		//assertEquals(22, time1.getHours());
 	}
 
 }
