@@ -12,6 +12,13 @@ package intervals;
  * 3. Declare and document the factory methods (methods that create an object) and the mutator methods
  */
 
+/*
+ * Procedure for implementing a data abstraction
+ * 
+ * 1. Define the raw concrete state space =
+ * 		define the fields
+ */
+
 /**
  * Abstract state invariants:
  * 
@@ -23,6 +30,15 @@ package intervals;
  *
  */
 public class Interval {
+	
+	/**
+	 * Representation invariants:
+	 * 
+	 * @invar | lowerBound <= upperBound
+	 */
+	
+	private int lowerBound;
+	private int upperBound;
 
 	public static int getLowerBound(Interval interval) {throw new RuntimeException("Not implemented");}
 	public static int getUpperBound(Interval interval) {throw new RuntimeException("Not implemented");}
