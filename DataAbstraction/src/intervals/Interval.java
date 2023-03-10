@@ -39,11 +39,13 @@ public class Interval {
 	
 	private int lowerBound;
 	private int upperBound;
-
-	public static int getLowerBound(Interval interval) {throw new RuntimeException("Not implemented");}
-	public static int getUpperBound(Interval interval) {throw new RuntimeException("Not implemented");}
 	
-	public static int getLength(Interval interval) {throw new RuntimeException("Not implemented");}
+	
+
+	public static int getLowerBound(Interval interval) { return interval.lowerBound; }
+	public static int getUpperBound(Interval interval) { return interval.upperBound; }
+	
+	public static int getLength(Interval interval) { return interval.upperBound - interval.lowerBound; }
 	
 	/**
 	 * @post | result == (getLowerBound(interval) <= x && x < getUpperBound(interval))
