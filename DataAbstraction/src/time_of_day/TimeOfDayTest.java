@@ -8,11 +8,23 @@ class TimeOfDayTest {
 
 	@Test
 	void test() {
-		TimeOfDay time1 = new TimeOfDay(22, 15);
-		assertEquals(22, time1.getHours());
+		int oopStartHour = 10;
+		int oopStartMinutes = 30;
+		int oopEndHour = 13;
+		int oopEndMinutes = 0;
 		
-		TimeOfDay time2 = new TimeOfDay(00, 30);
-		assertEquals(30, time2.getMinutes());
+		//int oopLength = (oopEndHour * 60 + oopEndMinutes) - (oopStartHour * 60 + oopStartMinutes);
+		
+		TimeOfDay oopStart = new TimeOfDay(10, 0);
+		oopStart.setMinutes(30);
+		TimeOfDay oopEnd = new TimeOfDay(12, 0);
+		oopEnd.setHours(11);
+		oopEnd.setMinutesSinceMidnight(13 * 60);
+		
+		int oopLength = oopEnd.getMinutesSinceMidnight() - oopStart.getMinutesSinceMidnight(); 
+		assertEquals(150, oopLength);
+		
+		
 	}
 
 }
