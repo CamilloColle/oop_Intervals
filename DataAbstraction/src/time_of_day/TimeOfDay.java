@@ -45,15 +45,18 @@ package time_of_day;
 public class TimeOfDay {
 
 	/**
-	 * @invar | 0 <= hours && hours <= 23
-	 * @invar | 0 <= minutes && minutes <= 59
+	 * @invar | 0 <= minutesSinceMidnight && minutesSinceMidnight < 24*60
 	 */
-	private int hours = 00;
-	private int minutes = 00;
+	private int minutesSinceMidnight;
 	
-	public int getHours() { return this.hours; }
-	public int getMinutes() { return this.minutes; }
-	public int getMinutesSinceMidnight() { return this.getHours() * 60 + this.getMinutes(); }
+	
+	public int getHours() { return  minutesSinceMidnight/60; }
+	public int getMinutes() { return minutesSinceMidnight%60; }
+	
+	/**
+	 * @post | result == getHours() * 60 + getMinutes()
+	 */
+	public int getMinutesSinceMidnight() { return minutesSinceMidnight; }
 	
 	
 	/**
@@ -68,8 +71,7 @@ public class TimeOfDay {
 			throw new IllegalArgumentException("'hours' our of range");
 		if (minutes < 0 || 59 < minutes)
 			throw new IllegalArgumentException("'minutes' our of range");
-		this.hours = hours;
-		this.minutes = minutes;
+		minutesSinceMidnight = hours * 60 + minutes;
 	}
 	
 	/**
@@ -78,7 +80,7 @@ public class TimeOfDay {
 	 * @post | getHours() == hours
 	 * @post | getMinutes() == old(getMinutes())
 	 */
-	public void setHours(int hours) { this.hours = hours; }
+	public void setHours(int hours) { minutesSinceMidnight = hours * 60 + minutesSinceMidnight % 60; }
 	
 	/**
 	 * @pre 0 <= minutes && minutes <= 59
@@ -86,7 +88,7 @@ public class TimeOfDay {
 	 * @post | getHours() == old(getHours())
 	 * @post | getMinutes() == minutes
 	 */
-	public void setMinutes(int minutes) { this.minutes = minutes; }
+	public void setMinutes(int minutes) { minutesSinceMidnight = minutesSinceMidnight - minutesSinceMidnight % 60 + minutes;}
 	
 	/**
 	 * @pre | 0 <= minutesSinceMidnight && minutesSinceMidnight <= 24*60
@@ -94,7 +96,6 @@ public class TimeOfDay {
 	 * @post | getMinutesSinceMidnight() == minutesSinceMidnight
 	 */
 	public void setMinutesSinceMidnight(int minutesSinceMidnight) { 
-		this.hours = minutesSinceMidnight / 60;
-		this.minutes = minutesSinceMidnight % 60;
+		this.minutesSinceMidnight = minutesSinceMidnight;
 	}
 }
